@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Online Calculator">
+        <meta name="keywords" content="HTML, CSS, JavaScript">
+        <meta name="author" content="Hien Cam">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="script.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+        <link rel="stylesheet" href="style.css">
+        <title>Simple JS Calculator</title>
+    </head>
+
+    <body>
+        <main>
+            <p>Thank you for visiting my calculator page. <br>This online calculator works.<br> Please give it a try!</p>
+            <div class="calculator">
+                <!--result display-->
+                <section class="display">
+                    <div class="previous-value">&nbsp</div>
+                    <input type="text" class="current-value" value="0" readonly />
+                </section>
+                <!--calculator keys-->
+                <div class="keys">
+                    <button class="key-operator" data-operation="add">+</button>
+                    <button class="key-operator" data-operation="subtract">-</button>
+                    <button class="key-operator" data-operation="multiply">*</button>
+                    <button class="key-operator" data-operation="divide">/</button>
+
+                    <button class="number">7</button>
+                    <button class="number">8</button>
+                    <button class="number">9</button>
+                    <button id="deleteBtn" class="delete">
+                        <i class="fas fa-backspace"></i>
+                    </button>
+
+                    <button class="number">4</button>
+                    <button class="number">5</button>
+                    <button class="number">6</button>
+                    <button class="clear-key">AC</button>
+                    
+
+                    <button class="number">1</button>
+                    <button class="number">2</button>
+                    <button class="number">3</button>
+
+                    <button class="number">0</button>
+                    <button class="number" data-operation="decimal">.</button>
+                    <button class="signChange">+/-</button>
+                    <button class="equal-key" data-operation="calculate">=</button>
+                </div>
+            </div>
+
+        </main>
+    </body>
+</html>
