@@ -64,8 +64,12 @@ const initApp = () => {
                     num2: parseFloat(itemArray[2]),
                     op: itemArray[1],
                     operation: function () {
-                        if (this.op == "/" && this.num2 == 0)           //if divide by 0, result will be undefined
+                        if (this.op == "/" && this.num2 == 0)        //if divide by 0, result will be undefined
                             return
+                        else if (this.op == "+" || this.op == "-")   //if + or -, then multiply num1 and num2 by 1000 and divide result by 1000 to prevent floating point errors
+
+                            return (`(${this.num1}*1000 ${this.op} ${this.num2}*1000)/1000`)   
+                        
                         else
                             return (`${this.num1} ${this.op} ${this.num2}`)
 
@@ -73,7 +77,7 @@ const initApp = () => {
                     
                 }
                 result = eval(equationObj.operation())
-                currentElement.value = result.toFixed(9)
+                currentElement.value = result
                 previousElement.textContent = `${result} ${operator}`
                 newNumber = true;
                 itemArray = [result, operator];
@@ -82,7 +86,7 @@ const initApp = () => {
             });
         });
 
-    //eual button -- onclick, display results of operation
+    //equal button -- onclick, display results of operation
     const equalButton = document.querySelector(".equal-key")
     equalButton.addEventListener("click", () => {
         if (!itemArray.length) {
@@ -94,10 +98,12 @@ const initApp = () => {
                 num1: parseFloat(itemArray[0]),
                 num2: parseFloat(itemArray[2]),
                 op:   itemArray[1],
+
                 operation: function () {
                     if (this.op == "/" && this.num2 == 0)           //if divide by 0, result will be undefined
                         return
-
+                    else if (this.op == "+" || this.op == "-")     //if + or -, then multiply num1 and num2 by 1000 and divide result by 1000 to prevent floating point errors
+                        return (`(${this.num1}*1000 ${this.op} ${this.num2}*1000)/1000`)
                     else
                         return (`${this.num1} ${this.op} ${this.num2}`)
 
@@ -106,8 +112,11 @@ const initApp = () => {
 
         }
         result = eval(equationObj.operation())
-        currentElement.value = result.toFixed(9)
-        previousElement.textContent = `${equationObj.operation()} =`
+        currentElement.value = result
+        if (equationObj.op == "+" || equationObj.op == "-")         //if operator is + or -, display with object data
+            previousElement.textContent = `${equationObj.num1} ${equationObj.op} ${equationObj.num2} =`
+        else
+            previousElement.textContent = `${equationObj.operation()} =`
         newNumber = true;
         itemArray = [result, operator];
     })
